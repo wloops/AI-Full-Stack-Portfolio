@@ -1,9 +1,11 @@
 'use client';
 
-import { motion } from 'motion/react';
-import { ExternalLink, Github, Database, Layout, Zap, Workflow, Sparkles } from 'lucide-react';
+import { motion, AnimatePresence } from 'motion/react';
+import { ExternalLink, Github, Database, Layout, Zap, Workflow, Sparkles, Image as ImageIcon } from 'lucide-react';
 import Image from 'next/image';
+import { useState } from 'react';
 import { useLanguage } from '@/components/language-provider';
+import { ProjectModal } from '@/components/project-modal';
 
 const projectIcons = [
   <Workflow key="1" className="w-6 h-6 text-emerald-400" />,
@@ -28,14 +30,13 @@ const projectColSpans = [
 
 export function ProjectsSection() {
   const { t } = useLanguage();
+  const [selectedProject, setSelectedProject] = useState<any>(null);
 
-  const projects = t.projects.list.map((p, i) => ({
+  const projects = t.projects.list.map((p: any, i: number) => ({
     ...p,
-    icon: projectIcons[i],
-    image: projectImages[i],
-    colSpan: projectColSpans[i],
-    link: '#',
-    github: '#'
+    icon: projectIcons[i % projectIcons.length],
+    cover: p.images?.[0] || projectImages[i % projectImages.length],
+    colSpan: projectColSpans[i % projectColSpans.length]
   }));
 
   return (
@@ -59,7 +60,7 @@ export function ProjectsSection() {
               {t.projects.desc}
             </p>
           </div>
-          <a href="https://github.com" target="_blank" rel="noreferrer" className="flex items-center gap-2 text-zinc-400 hover:text-emerald-400 transition-colors font-mono text-sm">
+          <a href={t.projects.viewAllLink} target="_blank" rel="noreferrer" className="flex items-center gap-2 text-zinc-400 hover:text-emerald-400 transition-colors font-mono text-sm">
             {t.projects.viewAll} <ArrowRight className="w-4 h-4" />
           </a>
         </motion.div>
@@ -77,7 +78,7 @@ export function ProjectsSection() {
               {/* Background Image with Overlay */}
               <div className="absolute inset-0 z-0 opacity-20 group-hover:opacity-30 transition-opacity duration-500">
                 <Image 
-                  src={project.image} 
+                  src={project.cover} 
                   alt={project.title}
                   fill
                   className="object-cover"
@@ -92,12 +93,25 @@ export function ProjectsSection() {
                     {project.icon}
                   </div>
                   <div className="flex gap-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300 translate-y-2 group-hover:translate-y-0">
-                    <a href={project.github} title={t.projects.source} className="p-2 bg-zinc-900 hover:bg-emerald-500 hover:text-zinc-950 rounded-full transition-colors text-zinc-400">
-                      <Github className="w-5 h-5" />
-                    </a>
-                    <a href={project.link} title={t.projects.demo} className="p-2 bg-zinc-900 hover:bg-emerald-500 hover:text-zinc-950 rounded-full transition-colors text-zinc-400">
-                      <ExternalLink className="w-5 h-5" />
-                    </a>
+                    {project.github && (
+                      <a href={project.github} target="_blank" rel="noreferrer" title={t.projects.source} className="p-2 bg-zinc-900 hover:bg-emerald-500 hover:text-zinc-950 rounded-full transition-colors text-zinc-400">
+                        <Github className="w-5 h-5" />
+                      </a>
+                    )}
+                    {project.demo && (
+                      <a href={project.demo} target="_blank" rel="noreferrer" title={t.projects.demo} className="p-2 bg-zinc-900 hover:bg-emerald-500 hover:text-zinc-950 rounded-full transition-colors text-zinc-400">
+                        <ExternalLink className="w-5 h-5" />
+                      </a>
+                    )}
+                    {project.images && project.images.length > 0 && (
+                      <button 
+                        onClick={() => setSelectedProject(project)}
+                        title={t.projects.details} 
+                        className="p-2 bg-zinc-900 hover:bg-emerald-500 hover:text-zinc-950 rounded-full transition-colors text-zinc-400"
+                      >
+                        <ImageIcon className="w-5 h-5" />
+                      </button>
+                    )}
                   </div>
                 </div>
 
@@ -108,7 +122,7 @@ export function ProjectsSection() {
                   </p>
                   
                   <div className="flex flex-wrap gap-2">
-                    {project.tech.map(tech => (
+                    {project.tech.map((tech: string) => (
                       <span key={tech} className="text-xs font-mono px-3 py-1.5 bg-zinc-950/80 backdrop-blur-sm border border-zinc-800 rounded-lg text-zinc-300 group-hover:border-zinc-700 transition-colors">
                         {tech}
                       </span>
@@ -120,6 +134,15 @@ export function ProjectsSection() {
           ))}
         </div>
       </div>
+
+      {/* Project Details Modal */}
+      {selectedProject && (
+        <ProjectModal 
+          project={selectedProject} 
+          onClose={() => setSelectedProject(null)} 
+          t={t}
+        />
+      )}
     </section>
   );
 }

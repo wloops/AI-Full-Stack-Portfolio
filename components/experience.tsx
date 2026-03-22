@@ -21,7 +21,7 @@ export function ExperienceSection() {
         </motion.div>
 
         <div className="relative border-l border-zinc-800 ml-3 md:ml-0">
-          {t.experience.list.map((exp, index) => (
+          {t.experience.list.map((exp: any, index: number) => (
             <motion.div
               key={index}
               initial={{ opacity: 0, x: -20 }}

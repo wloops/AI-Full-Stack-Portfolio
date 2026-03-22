@@ -11,13 +11,6 @@ const skillIcons = [
   <Terminal key="4" className="w-6 h-6 text-emerald-400" />
 ];
 
-const skillItems = [
-  ['React / Next.js', 'Vue3 / Nuxt', 'TypeScript', 'Tailwind CSS', 'Framer Motion'],
-  ['LLM APIs (Gemini, OpenAI)', 'RAG Pipelines', 'SSE Streaming', 'Prompt Engineering'],
-  ['Node.js', 'FastAPI', 'PostgreSQL', 'Redis', 'GraphQL'],
-  ['CI/CD', 'Docker', 'Vercel / Cloudflare', 'Performance Tuning', 'WebSockets']
-];
-
 const skillColSpans = [
   'md:col-span-2',
   'md:col-span-1',
@@ -28,11 +21,11 @@ const skillColSpans = [
 export function SkillsSection() {
   const { t } = useLanguage();
 
-  const skills = t.skills.categories.map((cat, i) => ({
-    category: cat,
-    icon: skillIcons[i],
-    items: skillItems[i],
-    colSpan: skillColSpans[i]
+  const skills = t.skills.categories.map((cat: any, i: number) => ({
+    category: cat.name,
+    icon: skillIcons[i % skillIcons.length],
+    items: cat.items,
+    colSpan: skillColSpans[i % skillColSpans.length]
   }));
 
   return (
@@ -70,7 +63,7 @@ export function SkillsSection() {
                 <h3 className="text-xl font-semibold">{skill.category}</h3>
               </div>
               <div className="flex flex-wrap gap-2">
-                {skill.items.map((item) => (
+                {skill.items.map((item: string) => (
                   <span
                     key={item}
                     className="px-3 py-1.5 bg-zinc-950 border border-zinc-800 rounded-lg text-sm font-mono text-zinc-300 group-hover:border-zinc-700 transition-colors"

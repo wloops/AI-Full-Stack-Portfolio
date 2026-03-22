@@ -70,9 +70,9 @@ export function HeroSection() {
           transition={{ duration: 1, delay: 0.6 }}
           className="mt-20 flex items-center justify-center gap-6 text-zinc-500"
         >
-          <a href="#" className="hover:text-emerald-400 transition-colors p-2"><Github className="w-6 h-6" /></a>
-          <a href="#" className="hover:text-emerald-400 transition-colors p-2"><Linkedin className="w-6 h-6" /></a>
-          <a href="#" className="hover:text-emerald-400 transition-colors p-2"><Mail className="w-6 h-6" /></a>
+          {t.hero.socials?.github && <a href={t.hero.socials.github} target="_blank" rel="noreferrer" className="hover:text-emerald-400 transition-colors p-2"><Github className="w-6 h-6" /></a>}
+          {t.hero.socials?.linkedin && <a href={t.hero.socials.linkedin} target="_blank" rel="noreferrer" className="hover:text-emerald-400 transition-colors p-2"><Linkedin className="w-6 h-6" /></a>}
+          {t.hero.socials?.email && <a href={t.hero.socials.email} className="hover:text-emerald-400 transition-colors p-2"><Mail className="w-6 h-6" /></a>}
         </motion.div>
       </div>
     </section>
