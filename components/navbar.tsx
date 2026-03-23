@@ -26,10 +26,13 @@ export function Navbar() {
       }`}
     >
       <div className="max-w-6xl mx-auto px-6 flex items-center justify-between">
-        <div className="flex items-center gap-2 font-mono font-bold text-xl tracking-tighter">
+        <button 
+          onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+          className="flex items-center gap-2 font-mono font-bold text-xl tracking-tighter hover:opacity-80 transition-opacity cursor-pointer"
+        >
           <Terminal className="w-6 h-6 text-emerald-500" />
           <span>DEV<span className="text-emerald-500">.</span>AI</span>
-        </div>
+        </button>
         
         <div className="hidden md:flex items-center gap-8 text-sm font-medium text-zinc-400">
           <a href="#projects" className="hover:text-emerald-400 transition-colors">{t.nav.projects}</a>

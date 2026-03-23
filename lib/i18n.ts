@@ -5,10 +5,11 @@ export const dict = {
     nav: { skills: '技能', experience: '经历', projects: '项目', chat: 'AI 导览', resume: '简历' },
     hero: {
       badge: 'Hello, World! 我是刘文龙',
-      title1: '探索我的',
-      title2: '全栈与 AI',
-      title3: '项目',
-      desc: '7 年全栈研发经验（偏前端），深入掌握 Vue 3/React 生态。专注工程化架构、低代码引擎开发，并致力于将 LLM 深度集成至业务流中。',
+      title1: '构建',
+      title2: '智能化',
+      title3: 'Web 体验',
+      desc: '7 年全栈研发经验，具备从产品界面到后端服务、再到 AI 应用集成的完整交付能力。专注工程化架构、低代码引擎开发，并致力于将 LLM/RAG 深度集成至业务流中。',
+      tags: ['AI / LLM', 'RAG Pipelines', 'Vue & React', 'Node.js & Python', 'Low-Code Engines'],
       btn1: '浏览核心项目',
       btn2: '与我的 AI 导览对话',
       socials: {
@@ -123,10 +124,11 @@ export const dict = {
     nav: { skills: 'Skills', experience: 'Experience', projects: 'Projects', chat: 'AI Chat', resume: 'Resume' },
     hero: {
       badge: 'Hello, World! I am Wenlong Liu',
-      title1: 'Explore My',
-      title2: 'Full-Stack & AI',
-      title3: 'Projects.',
-      desc: '7 years of full-stack experience with deep expertise in Vue 3/React. Focused on engineering architecture, low-code engines, and integrating LLMs into business workflows.',
+      title1: 'Building',
+      title2: 'Intelligent',
+      title3: 'Web Experiences.',
+      desc: '7 years of full-stack experience, delivering complete solutions from UI to backend services and AI integration. Focused on engineering architecture, low-code engines, and integrating LLM/RAG into business workflows.',
+      tags: ['AI / LLM', 'RAG Pipelines', 'Vue & React', 'Node.js & Python', 'Low-Code Engines'],
       btn1: 'View Core Projects',
       btn2: 'Chat with AI Guide',
       socials: {
