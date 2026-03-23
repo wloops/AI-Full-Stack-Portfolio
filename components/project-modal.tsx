@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from 'motion/react';
 import { X, ChevronLeft, ChevronRight, Image as ImageIcon, Github, ExternalLink } from 'lucide-react';
 import Image from 'next/image';
 import { useState, useEffect } from 'react';
+import { createPortal } from 'react-dom';
 
 interface ProjectModalProps {
   project: {
@@ -20,6 +21,11 @@ interface ProjectModalProps {
 
 export function ProjectModal({ project, onClose, t }: ProjectModalProps) {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   // Handle escape key
   useEffect(() => {
@@ -50,9 +56,9 @@ export function ProjectModal({ project, onClose, t }: ProjectModalProps) {
     }
   };
 
-  return (
+  const modalContent = (
     <AnimatePresence>
-      <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6">
+      <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6">
         {/* Backdrop */}
         <motion.div
           initial={{ opacity: 0 }}
@@ -170,4 +176,8 @@ export function ProjectModal({ project, onClose, t }: ProjectModalProps) {
       </div>
     </AnimatePresence>
   );
+
+  if (!mounted) return null;
+
+  return createPortal(modalContent, document.body);
 }

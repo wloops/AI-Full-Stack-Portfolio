@@ -1,11 +1,12 @@
 'use client';
 
 import { motion, AnimatePresence } from 'motion/react';
-import { ExternalLink, Github, Database, Layout, Zap, Workflow, Sparkles, Image as ImageIcon } from 'lucide-react';
+import { ExternalLink, Github, Database, Layout, Zap, Workflow, Sparkles, Image as ImageIcon, Network } from 'lucide-react';
 import Image from 'next/image';
 import { useState } from 'react';
 import { useLanguage } from '@/components/language-provider';
 import { ProjectModal } from '@/components/project-modal';
+import { ArchitectureViewer } from '@/components/architecture-viewer';
 
 const projectIcons = [
   <Workflow key="1" className="w-6 h-6 text-emerald-400" />,
@@ -31,6 +32,7 @@ const projectColSpans = [
 export function ProjectsSection() {
   const { t } = useLanguage();
   const [selectedProject, setSelectedProject] = useState<any>(null);
+  const [showArchitecture, setShowArchitecture] = useState(false);
 
   const projects = t.projects.list.map((p: any, i: number) => ({
     ...p,
@@ -93,6 +95,16 @@ export function ProjectsSection() {
                     {project.icon}
                   </div>
                   <div className="flex gap-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300 translate-y-2 group-hover:translate-y-0">
+                    {/* Architecture Button (Only for the first project as a demo) */}
+                    {index === 0 && (
+                      <button 
+                        onClick={() => setShowArchitecture(true)}
+                        title="View Architecture" 
+                        className="p-2 bg-zinc-900 hover:bg-emerald-500 hover:text-zinc-950 rounded-full transition-colors text-emerald-400 border border-emerald-500/30 shadow-[0_0_15px_rgba(16,185,129,0.2)]"
+                      >
+                        <Network className="w-5 h-5" />
+                      </button>
+                    )}
                     {project.github && (
                       <a href={project.github} target="_blank" rel="noreferrer" title={t.projects.source} className="p-2 bg-zinc-900 hover:bg-emerald-500 hover:text-zinc-950 rounded-full transition-colors text-zinc-400">
                         <Github className="w-5 h-5" />
@@ -143,6 +155,12 @@ export function ProjectsSection() {
           t={t}
         />
       )}
+
+      {/* Architecture Viewer Modal */}
+      <ArchitectureViewer 
+        isOpen={showArchitecture} 
+        onClose={() => setShowArchitecture(false)} 
+      />
     </section>
   );
 }
