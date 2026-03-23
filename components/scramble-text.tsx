@@ -8,12 +8,14 @@ export function ScrambleText({
   text, 
   className = '', 
   delay = 0,
-  speed = 0.3
+  speed = 0.15,
+  scrambleFrames = 15
 }: { 
   text: string; 
   className?: string; 
   delay?: number;
   speed?: number;
+  scrambleFrames?: number;
 }) {
   const [displayText, setDisplayText] = useState(text);
   const [isMounted, setIsMounted] = useState(false);
@@ -27,7 +29,7 @@ export function ScrambleText({
 
     let timeout: NodeJS.Timeout;
     let frame: number;
-    let iteration = 0;
+    let iteration = -scrambleFrames;
 
     const animate = () => {
       setDisplayText((prev) => {
@@ -60,7 +62,7 @@ export function ScrambleText({
       clearTimeout(timeout);
       cancelAnimationFrame(frame);
     };
-  }, [text, delay, speed, isMounted]);
+  }, [text, delay, speed, scrambleFrames, isMounted]);
 
   // To avoid hydration mismatch, render original text on server
   if (!isMounted) return <span className={className}>{text}</span>;
