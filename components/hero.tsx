@@ -39,7 +39,6 @@ export function HeroSection() {
       />
 
       {/* Background Elements */}
-      <div className="absolute inset-0 bg-grid-pattern opacity-20 pointer-events-none" />
       <motion.div 
         animate={{ 
           scale: [1, 1.2, 1],
