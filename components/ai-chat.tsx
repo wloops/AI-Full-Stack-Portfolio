@@ -4,6 +4,7 @@ import { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Send, Bot, User, Loader2, Sparkles } from 'lucide-react';
 import { useLanguage } from '@/components/language-provider';
+import { AICodingEffect } from '@/components/ai-coding-effect';
 
 interface Message {
   role: 'user' | 'assistant';
@@ -112,8 +113,11 @@ export function AiChatSection() {
   };
 
   return (
-    <section id="ai-interview" className="py-24 relative z-10 bg-zinc-950/50">
-      <div className="max-w-4xl mx-auto px-6">
+    <section id="ai-interview" className="py-24 relative z-10 bg-zinc-950/50 overflow-hidden">
+      {/* Background AI Coding Effect */}
+      <AICodingEffect className="absolute top-1/2 left-0 -translate-x-[20%] -translate-y-1/2 w-[800px] h-[600px] opacity-[0.15] pointer-events-none z-0 hidden lg:block" />
+      
+      <div className="max-w-4xl mx-auto px-6 relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}

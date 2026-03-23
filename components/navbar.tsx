@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { motion } from 'motion/react';
-import { Terminal, Globe } from 'lucide-react';
+import { Terminal, Globe, Github, Linkedin, Mail } from 'lucide-react';
 import { useLanguage } from '@/components/language-provider';
 
 export function Navbar() {
@@ -45,15 +45,17 @@ export function Navbar() {
         </div>
 
         <div className="flex items-center gap-4">
+          <div className="hidden md:flex items-center gap-4 mr-2 pr-4 border-r border-zinc-800">
+            {t.hero.socials?.github && <a href={t.hero.socials.github} target="_blank" rel="noreferrer" className="text-zinc-400 hover:text-emerald-400 transition-colors"><Github className="w-4 h-4" /></a>}
+            {t.hero.socials?.linkedin && <a href={t.hero.socials.linkedin} target="_blank" rel="noreferrer" className="text-zinc-400 hover:text-emerald-400 transition-colors"><Linkedin className="w-4 h-4" /></a>}
+            {t.hero.socials?.email && <a href={t.hero.socials.email} className="text-zinc-400 hover:text-emerald-400 transition-colors"><Mail className="w-4 h-4" /></a>}
+          </div>
           <button 
             onClick={() => setLang(lang === 'zh' ? 'en' : 'zh')}
             className="flex items-center gap-1.5 text-sm font-medium text-zinc-400 hover:text-emerald-400 transition-colors"
           >
             <Globe className="w-4 h-4" />
             <span>{lang === 'zh' ? 'EN' : '中文'}</span>
-          </button>
-          <button className="px-5 py-2 text-sm font-semibold bg-zinc-100 text-zinc-950 rounded-full hover:bg-white transition-colors">
-            {t.nav.resume}
           </button>
         </div>
       </div>

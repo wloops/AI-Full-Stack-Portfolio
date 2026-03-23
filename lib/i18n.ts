@@ -6,8 +6,8 @@ export const dict = {
     hero: {
       badge: 'Hello, World! 我是刘文龙',
       title1: '构建',
-      title2: 'AI 与低代码驱动的',
-      title3: 'Web 产品',
+      title2: 'AI 与低代码驱动',
+      title3: '的 Web 产品',
       desc: '7 年全栈研发经验，具备从前端界面、后端服务到 AI 应用落地的完整交付能力。长期专注工程化架构、低代码平台与复杂中后台系统，也持续将 LLM / RAG 能力整合进真实业务场景。',
       tags: ['AI / LLM', 'RAG Pipelines', 'Vue & React', 'Node.js & Python', 'Low-Code Engines'],
       btn1: '浏览核心项目',

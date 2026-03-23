@@ -5,6 +5,8 @@ import { MouseEvent } from 'react';
 import { ArrowRight, Github, Linkedin, Mail, Terminal, Code2 } from 'lucide-react';
 import { useLanguage } from '@/components/language-provider';
 import { ScrambleText } from '@/components/scramble-text';
+import { AICodingEffect } from '@/components/ai-coding-effect';
+import { AIUIEffect } from '@/components/ai-ui-effect';
 
 export function HeroSection() {
   const { t } = useLanguage();
@@ -59,12 +61,30 @@ export function HeroSection() {
         className="absolute top-1/4 right-1/4 w-[400px] h-[400px] md:w-[600px] md:h-[600px] bg-teal-500/20 blur-[100px] rounded-full pointer-events-none" 
       />
 
+      {/* Left Background: AI Coding Effect */}
+      <div className="absolute top-1/2 -translate-y-1/2 left-0 w-[400px] lg:w-[500px] h-[500px] hidden md:block opacity-30 pointer-events-none z-0"
+           style={{
+             maskImage: 'linear-gradient(to right, black 20%, transparent 100%)',
+             WebkitMaskImage: 'linear-gradient(to right, black 20%, transparent 100%)'
+           }}>
+        <AICodingEffect className="w-full h-full" />
+      </div>
+
+      {/* Right Background: AI UI Generation Effect */}
+      <div className="absolute top-1/2 -translate-y-1/2 right-0 w-[400px] lg:w-[500px] h-[500px] hidden md:block opacity-40 pointer-events-none z-0"
+           style={{
+             maskImage: 'linear-gradient(to left, black 20%, transparent 100%)',
+             WebkitMaskImage: 'linear-gradient(to left, black 20%, transparent 100%)'
+           }}>
+        <AIUIEffect className="w-full h-full" />
+      </div>
+
       <div className="relative z-10 max-w-5xl mx-auto px-6 text-center">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-zinc-900 border border-zinc-800 text-sm font-mono text-zinc-400 mb-8"
+          className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-zinc-900 border border-zinc-800 text-sm font-mono text-zinc-400 mb-8 mx-auto"
         >
           <Terminal className="w-4 h-4 text-emerald-500" />
           <span>{t.hero.badge}</span>
@@ -74,7 +94,7 @@ export function HeroSection() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.1 }}
-          className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tighter mb-6"
+          className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight leading-tight mb-12"
         >
           <ScrambleText text={t.hero.title1} delay={100} />{' '}
           <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-teal-600">
@@ -106,7 +126,7 @@ export function HeroSection() {
               }
             }
           }}
-          className="flex flex-wrap justify-center gap-3 mb-12 max-w-3xl mx-auto"
+          className="flex flex-wrap justify-center gap-3 mb-10 max-w-3xl mx-auto"
         >
           {t.hero.tags?.map((tag: string, index: number) => (
             <motion.span
@@ -142,17 +162,6 @@ export function HeroSection() {
             <span>{t.hero.btn2}</span>
             <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform text-emerald-500" />
           </a>
-        </motion.div>
-
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 1, delay: 0.8 }}
-          className="mt-20 flex items-center justify-center gap-6 text-zinc-500"
-        >
-          {t.hero.socials?.github && <a href={t.hero.socials.github} target="_blank" rel="noreferrer" className="hover:text-emerald-400 transition-colors p-2"><Github className="w-6 h-6" /></a>}
-          {t.hero.socials?.linkedin && <a href={t.hero.socials.linkedin} target="_blank" rel="noreferrer" className="hover:text-emerald-400 transition-colors p-2"><Linkedin className="w-6 h-6" /></a>}
-          {t.hero.socials?.email && <a href={t.hero.socials.email} className="hover:text-emerald-400 transition-colors p-2"><Mail className="w-6 h-6" /></a>}
         </motion.div>
       </div>
     </section>
