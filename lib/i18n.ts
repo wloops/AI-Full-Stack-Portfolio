@@ -146,6 +146,10 @@ export const dict = {
         }
       ],
       diagram: {
+        tabs: {
+          arch: '全栈架构工作流',
+          cicd: 'CI/CD 自动化审查'
+        },
         title: '全栈 AI 架构工作流',
         nodes: {
           prd: '产品需求 / 原始 PRD',
@@ -166,6 +170,21 @@ export const dict = {
           agentBackend: 'Backend Agent 生成业务逻辑与单元测试',
           agentFrontend: 'Frontend Agent 生成 UI 并绑定 Mock 数据',
           reviewer: 'Reviewer Agent 自动化全栈联调与质检'
+        },
+        cicd: {
+          title: 'CI/CD 自动化审查与部署流水线',
+          dev: '开发者 (Dev)',
+          ide: 'AI 编程工具 (Cursor/Claude)',
+          git: 'Git 仓库 (Merge Request)',
+          trigger: '触发自动化流水线',
+          gate: '双重防腐质检层 (拦截架构腐烂核心)',
+          sonar: '传统静态扫描 (AST/基础漏洞)',
+          agent: 'Review Agent (深度逻辑与架构审查)',
+          agentDesc: '自动拉取 MR Diff，结合 RAG 团队规范比对',
+          fail: '任何一环质检未通过',
+          block: '拦截 MR / Agent 逐行 Comment 指导修复',
+          pass: '双重质检均通过',
+          deploy: 'Approve MR / 自动化构建与部署'
         }
       }
     },
@@ -316,6 +335,10 @@ export const dict = {
         }
       ],
       diagram: {
+        tabs: {
+          arch: 'Full-Stack Architecture',
+          cicd: 'CI/CD Automated Review'
+        },
         title: 'Full-Stack AI Architecture Workflow',
         nodes: {
           prd: 'Product Requirements / PRD',
@@ -336,6 +359,21 @@ export const dict = {
           agentBackend: 'Backend Agent: Logic & Unit Tests',
           agentFrontend: 'Frontend Agent: UI & Mock Data',
           reviewer: 'Reviewer Agent: Automated Integration & QA'
+        },
+        cicd: {
+          title: 'CI/CD Automated Review & Deployment Pipeline',
+          dev: 'Developer',
+          ide: 'AI IDE (Cursor/Claude)',
+          git: 'Git Repository (Merge Request)',
+          trigger: 'Trigger CI Pipeline',
+          gate: 'Double Anti-Corruption Quality Gate',
+          sonar: 'Static Scan (AST/Vulnerabilities)',
+          agent: 'Review Agent (Deep Logic & Architecture)',
+          agentDesc: 'Pulls MR Diff, compares with RAG team conventions',
+          fail: 'Any Quality Check Fails',
+          block: 'Block MR / Agent Comments Line-by-Line',
+          pass: 'Both Checks Pass',
+          deploy: 'Approve MR / Automated Build & Deploy'
         }
       }
     },

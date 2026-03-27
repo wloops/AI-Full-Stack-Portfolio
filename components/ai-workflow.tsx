@@ -1,7 +1,30 @@
 'use client';
 
+import { useState } from 'react';
 import { motion } from 'motion/react';
-import { ShieldCheck, Cpu, GitMerge, Users, User, Database, Bot, Server, Layout, UserCheck, RotateCcw, Workflow, ArrowDown } from 'lucide-react';
+import { 
+  ShieldCheck, 
+  Cpu, 
+  GitMerge, 
+  Users, 
+  User, 
+  Database, 
+  Bot, 
+  Server, 
+  Layout, 
+  UserCheck, 
+  RotateCcw, 
+  Workflow, 
+  ArrowDown,
+  TerminalSquare,
+  GitPullRequest,
+  Search,
+  BrainCircuit,
+  XCircle,
+  CheckCircle,
+  MessageSquare,
+  Rocket
+} from 'lucide-react';
 import { dict, Language } from '@/lib/i18n';
 
 const icons = {
@@ -127,8 +150,10 @@ function SimpleArrow({ label, dashed }: { label?: string, dashed?: boolean }) {
 }
 
 export function AiWorkflow({ lang }: { lang: Language }) {
+  const [activeTab, setActiveTab] = useState<'arch' | 'cicd'>('arch');
   const content = dict[lang].workflow;
   const d = content.diagram.nodes;
+  const c = content.diagram.cicd;
 
   return (
     <section id="workflow" className="py-24 relative z-10">
@@ -196,14 +221,42 @@ export function AiWorkflow({ lang }: { lang: Language }) {
           className="mt-24 max-w-4xl mx-auto"
         >
           <div className="text-center mb-12">
-            <h3 className="text-2xl font-bold text-zinc-100">{content.diagram.title}</h3>
+            <h3 className="text-2xl font-bold text-zinc-100 tracking-tight mb-6">
+              {activeTab === 'arch' ? content.diagram.title : c.title}
+            </h3>
+            
+            {/* Tab Switcher */}
+            <div className="flex justify-center gap-4">
+              <button
+                onClick={() => setActiveTab('arch')}
+                className={`px-6 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
+                  activeTab === 'arch' 
+                    ? 'bg-emerald-500/20 text-emerald-300 border border-emerald-500/50 shadow-[0_0_15px_rgba(16,185,129,0.2)]' 
+                    : 'bg-zinc-800/50 text-zinc-400 border border-zinc-700/50 hover:text-zinc-200'
+                }`}
+              >
+                {content.diagram.tabs.arch}
+              </button>
+              <button
+                onClick={() => setActiveTab('cicd')}
+                className={`px-6 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
+                  activeTab === 'cicd' 
+                    ? 'bg-blue-500/20 text-blue-300 border border-blue-500/50 shadow-[0_0_15px_rgba(59,130,246,0.2)]' 
+                    : 'bg-zinc-800/50 text-zinc-400 border border-zinc-700/50 hover:text-zinc-200'
+                }`}
+              >
+                {content.diagram.tabs.cicd}
+              </button>
+            </div>
           </div>
           
-          <div className="relative p-6 md:p-10 glass-panel rounded-3xl border border-white/5 bg-zinc-900/20">
-            {/* Background Grid */}
-            <div className="absolute inset-0 bg-grid-pattern opacity-[0.03] pointer-events-none rounded-3xl" />
-            
-            <div className="relative z-10">
+          {/* Architecture Diagram Tab */}
+          {activeTab === 'arch' && (
+            <div className="relative p-6 md:p-10 glass-panel rounded-3xl border border-white/5 bg-zinc-900/20">
+              {/* Background Grid */}
+              <div className="absolute inset-0 bg-grid-pattern opacity-[0.03] pointer-events-none rounded-3xl" />
+              
+              <div className="relative z-10">
               {/* Row 1 */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
                 <div className="flex flex-col items-center h-full">
@@ -227,7 +280,7 @@ export function AiWorkflow({ lang }: { lang: Language }) {
                 {/* Reject Loop Lines (Desktop) */}
                 <div className="hidden md:block absolute inset-0 pointer-events-none z-0">
                   {/* Top-Left Corner (Goes to Architect Agent) */}
-                  <div className="absolute top-[2.5rem] bottom-[50%] left-[11%] right-[83.33%] border-t-2 border-l-2 border-dashed border-red-500/30 rounded-tl-xl">
+                  <div className="absolute top-[2.5rem] bottom-[50%] left-[4%] right-[83.33%] border-t-2 border-l-2 border-dashed border-red-500/30 rounded-tl-xl">
                     {/* Arrow pointing right into Architect Agent */}
                     <div className="absolute top-[-7px] right-[-6px] text-red-500/50 -rotate-90">
                       <ArrowDown className="w-3 h-3" />
@@ -239,11 +292,7 @@ export function AiWorkflow({ lang }: { lang: Language }) {
                   </div>
                   
                   {/* Bottom-Left Corner (Comes from Human Review) */}
-                  <div className="absolute top-[50%] bottom-[2.5rem] left-[11%] right-[75%] border-b-2 border-l-2 border-dashed border-red-500/30 rounded-bl-xl">
-                    {/* Arrow pointing left from Human Review */}
-                    <div className="absolute bottom-[-7px] right-[10px] text-red-500/50 rotate-90">
-                      <ArrowDown className="w-3 h-3" />
-                    </div>
+                  <div className="absolute top-[50%] bottom-[2.5rem] left-[4%] right-[75%] border-b-2 border-l-2 border-dashed border-red-500/30 rounded-bl-xl">
                   </div>
                 </div>
 
@@ -268,7 +317,7 @@ export function AiWorkflow({ lang }: { lang: Language }) {
                   <Node type="human" title={d.review} icon={UserCheck} className="w-full md:w-1/2" />
                   
                   {/* Reject Loop Badge */}
-                  <div className="absolute left-0 top-1/2 -translate-y-1/2 hidden md:flex items-center z-20 w-[22%]">
+                  <div className="absolute left-[6%] top-1/2 -translate-y-1/2 hidden md:flex items-center z-20 w-[18%]">
                     <div className="flex items-start gap-2 text-red-400/80 text-xs border border-red-500/20 bg-red-500/10 px-3 py-2 rounded-lg shadow-lg backdrop-blur-md w-full">
                       <RotateCcw className="w-3 h-3 shrink-0 mt-0.5" />
                       <span className="whitespace-normal leading-tight">{d.reject}</span>
@@ -302,6 +351,124 @@ export function AiWorkflow({ lang }: { lang: Language }) {
               </div>
             </div>
           </div>
+          )}
+
+          {/* CI/CD Diagram Tab */}
+          {activeTab === 'cicd' && (
+            <div className="relative p-6 md:p-10 glass-panel rounded-3xl border border-white/5 bg-zinc-900/20">
+              <div className="absolute inset-0 bg-grid-pattern opacity-[0.03] pointer-events-none rounded-3xl" />
+              
+              <div className="relative z-10 flex flex-col items-center gap-0 w-full">
+                
+                {/* --- REJECT LOOP WRAPPER --- */}
+                <div className="relative w-full">
+                  {/* Reject Loop Lines (Desktop) */}
+                  <div className="hidden md:block absolute inset-0 pointer-events-none z-0">
+                    {/* Top-Left Corner (Goes to Dev) */}
+                    <div className="absolute top-[2.5rem] bottom-[50%] left-[-2rem] w-[2rem] border-t-2 border-l-2 border-dashed border-red-500/30 rounded-tl-xl">
+                      {/* Arrow pointing right into Dev */}
+                      <div className="absolute top-[-7px] right-[-6px] text-red-500/50 -rotate-90">
+                        <ArrowDown className="w-3 h-3" />
+                      </div>
+                      {/* Arrow pointing up on the left vertical line */}
+                      <div className="absolute bottom-[20%] left-[-7px] text-red-500/50 rotate-180">
+                        <ArrowDown className="w-3 h-3" />
+                      </div>
+                    </div>
+                    
+                    {/* Bottom-Left Corner (Comes from Block MR) */}
+                    <div className="absolute top-[50%] bottom-[2.5rem] left-[-2rem] w-[2rem] border-b-2 border-l-2 border-dashed border-red-500/30 rounded-bl-xl">
+                    </div>
+                  </div>
+
+                  {/* Stage 1: Commit */}
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-4 w-full relative z-10">
+                    <Node type="human" title={c.dev} icon={User} className="h-full" />
+                    <Node type="sys" title={c.ide} icon={TerminalSquare} className="h-full" />
+                    <Node type="sys" title={c.git} icon={GitPullRequest} className="h-full" />
+                    
+                    {/* Horizontal Connectors for Stage 1 (Desktop only) */}
+                    <div className="hidden md:block absolute top-1/2 left-[16.66%] right-[83.33%] h-[2px] bg-zinc-700/50 -translate-y-1/2 -z-10">
+                      <ArrowDown className="absolute right-[-6px] top-[-7px] text-zinc-500/50 -rotate-90 w-3 h-3" />
+                    </div>
+                    <div className="hidden md:block absolute top-1/2 left-[50%] right-[50%] h-[2px] bg-zinc-700/50 -translate-y-1/2 -z-10">
+                      <ArrowDown className="absolute right-[-6px] top-[-7px] text-zinc-500/50 -rotate-90 w-3 h-3" />
+                    </div>
+                  </div>
+
+                  {/* Vertical Connector to CI Pipeline */}
+                  <div className="w-full flex justify-end relative h-16 z-10">
+                    <div className="absolute right-[16.66%] top-0 bottom-0 w-[2px] bg-zinc-700/50">
+                      <ArrowDown className="absolute bottom-[-6px] left-[-5px] text-zinc-500/50 w-3 h-3" />
+                    </div>
+                    <div className="absolute right-[18%] top-1/2 -translate-y-1/2 text-xs text-zinc-400 bg-zinc-900/80 px-2 py-1 rounded-md border border-zinc-800">
+                      {c.trigger}
+                    </div>
+                  </div>
+
+                  {/* Stage 2: Quality Gate (The Core) */}
+                  <div className="w-full border-2 border-blue-500/20 bg-blue-500/5 p-6 md:p-8 rounded-2xl relative z-10 shadow-[inset_0_0_30px_rgba(59,130,246,0.05)]">
+                    <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-zinc-900 px-4 py-1 rounded-full border border-blue-500/30 text-blue-400 text-xs font-semibold tracking-wider flex items-center gap-2 whitespace-nowrap">
+                      <Search className="w-3 h-3" />
+                      {c.gate}
+                    </div>
+                    
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-4">
+                      <Node type="sys" title={c.sonar} icon={Search} className="h-full border-blue-500/20 bg-blue-500/10 text-blue-300 shadow-[0_0_15px_rgba(59,130,246,0.1)]" />
+                      <div className="relative h-full">
+                        <Node type="ai" title={c.agent} icon={BrainCircuit} className="h-full" />
+                        <div className="absolute -bottom-3 left-1/2 -translate-x-1/2 w-[90%] text-[10px] text-emerald-400/80 bg-emerald-950/80 border border-emerald-500/20 px-2 py-1 rounded text-center whitespace-nowrap">
+                          {c.agentDesc}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Vertical Connector to Decision */}
+                  <div className="w-full flex justify-center relative h-16 z-10">
+                    <div className="absolute left-1/2 top-0 bottom-0 w-[2px] bg-zinc-700/50">
+                      <ArrowDown className="absolute bottom-[-6px] left-[-5px] text-zinc-500/50 w-3 h-3" />
+                    </div>
+                  </div>
+
+                  {/* Stage 3: Decision Split */}
+                  <div className="w-full relative z-10">
+                    {/* Split Lines */}
+                    <div className="hidden md:block absolute top-0 left-[25%] right-[25%] h-[2px] bg-zinc-700/50 z-0">
+                      <div className="absolute left-0 top-0 bottom-[-2rem] w-[2px] bg-zinc-700/50">
+                        <ArrowDown className="absolute bottom-[-6px] left-[-5px] text-zinc-500/50 w-3 h-3" />
+                      </div>
+                      <div className="absolute right-0 top-0 bottom-[-2rem] w-[2px] bg-zinc-700/50">
+                        <ArrowDown className="absolute bottom-[-6px] left-[-5px] text-zinc-500/50 w-3 h-3" />
+                      </div>
+                    </div>
+
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8 pt-8 md:pt-12">
+                      {/* Fail Path */}
+                      <div className="flex flex-col items-center relative">
+                        <div className="text-red-400 mb-4 flex items-center gap-2 text-sm font-medium bg-red-500/10 px-3 py-1 rounded-full border border-red-500/20">
+                          <XCircle className="w-4 h-4" /> 
+                          {c.fail}
+                        </div>
+                        <Node type="sys" title={c.block} icon={MessageSquare} className="w-full border-red-500/30 bg-red-500/10 text-red-300 shadow-[0_0_15px_rgba(239,68,68,0.1)]" />
+                      </div>
+
+                      {/* Pass Path */}
+                      <div className="flex flex-col items-center">
+                        <div className="text-emerald-400 mb-4 flex items-center gap-2 text-sm font-medium bg-emerald-500/10 px-3 py-1 rounded-full border border-emerald-500/20">
+                          <CheckCircle className="w-4 h-4" /> 
+                          {c.pass}
+                        </div>
+                        <Node type="sys" title={c.deploy} icon={Rocket} className="w-full border-emerald-500/30 bg-emerald-500/10 text-emerald-300 shadow-[0_0_15px_rgba(16,185,129,0.1)]" />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                {/* --- END REJECT LOOP WRAPPER --- */}
+
+              </div>
+            </div>
+          )}
         </motion.div>
       </div>
     </section>
