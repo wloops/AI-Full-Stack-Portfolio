@@ -94,7 +94,7 @@ export function ProjectsSection() {
                   <div className="p-3 bg-zinc-950/80 backdrop-blur-sm rounded-xl border border-zinc-800 group-hover:border-emerald-500/50 transition-colors">
                     {project.icon}
                   </div>
-                  <div className="flex gap-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300 translate-y-2 group-hover:translate-y-0">
+                  <div className="flex gap-3 opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-all duration-300 translate-y-0 md:translate-y-2 md:group-hover:translate-y-0">
                     {/* Architecture Button (Only for the first project as a demo) */}
                     {index === 0 && (
                       <button 

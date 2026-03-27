@@ -103,13 +103,13 @@ export function ProjectModal({ project, onClose, t }: ProjectModalProps) {
                   <>
                     <button
                       onClick={prevImage}
-                      className="absolute left-4 top-1/2 -translate-y-1/2 p-2 bg-zinc-950/50 hover:bg-emerald-500 text-zinc-300 hover:text-zinc-950 rounded-full backdrop-blur-sm transition-all opacity-0 group-hover:opacity-100"
+                      className="absolute left-4 top-1/2 -translate-y-1/2 p-2 bg-zinc-950/50 hover:bg-emerald-500 text-zinc-300 hover:text-zinc-950 rounded-full backdrop-blur-sm transition-all opacity-100 md:opacity-0 md:group-hover:opacity-100"
                     >
                       <ChevronLeft className="w-6 h-6" />
                     </button>
                     <button
                       onClick={nextImage}
-                      className="absolute right-4 top-1/2 -translate-y-1/2 p-2 bg-zinc-950/50 hover:bg-emerald-500 text-zinc-300 hover:text-zinc-950 rounded-full backdrop-blur-sm transition-all opacity-0 group-hover:opacity-100"
+                      className="absolute right-4 top-1/2 -translate-y-1/2 p-2 bg-zinc-950/50 hover:bg-emerald-500 text-zinc-300 hover:text-zinc-950 rounded-full backdrop-blur-sm transition-all opacity-100 md:opacity-0 md:group-hover:opacity-100"
                     >
                       <ChevronRight className="w-6 h-6" />
                     </button>
