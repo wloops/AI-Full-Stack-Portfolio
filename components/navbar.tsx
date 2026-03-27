@@ -36,6 +36,7 @@ export function Navbar() {
         
         <div className="hidden md:flex items-center gap-8 text-sm font-medium text-zinc-400">
           <a href="#projects" className="hover:text-emerald-400 transition-colors">{t.nav.projects}</a>
+          <a href="#workflow" className="hover:text-emerald-400 transition-colors">{t.nav.workflow}</a>
           <a href="#ai-interview" className="hover:text-emerald-400 transition-colors flex items-center gap-1">
             <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
             {t.nav.chat}

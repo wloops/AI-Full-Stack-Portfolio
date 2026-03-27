@@ -38,7 +38,8 @@ export function ProjectsSection() {
     ...p,
     icon: projectIcons[i % projectIcons.length],
     cover: p.images?.[0] || projectImages[i % projectImages.length],
-    colSpan: projectColSpans[i % projectColSpans.length]
+    colSpan: projectColSpans[i % projectColSpans.length],
+    hasArchitecture: i === 0
   }));
 
   return (
@@ -75,7 +76,8 @@ export function ProjectsSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className={`group glass-panel rounded-3xl overflow-hidden flex flex-col relative ${project.colSpan}`}
+              onClick={() => setSelectedProject(project)}
+              className={`group glass-panel rounded-3xl overflow-hidden flex flex-col relative cursor-pointer ${project.colSpan}`}
             >
               {/* Background Image with Overlay */}
               <div className="absolute inset-0 z-0 opacity-20 group-hover:opacity-30 transition-opacity duration-500">
@@ -94,11 +96,11 @@ export function ProjectsSection() {
                   <div className="p-3 bg-zinc-950/80 backdrop-blur-sm rounded-xl border border-zinc-800 group-hover:border-emerald-500/50 transition-colors">
                     {project.icon}
                   </div>
-                  <div className="flex gap-3 opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-all duration-300 translate-y-0 md:translate-y-2 md:group-hover:translate-y-0">
-                    {/* Architecture Button (Only for the first project as a demo) */}
-                    {index === 0 && (
+                  <div className="hidden lg:flex gap-3 opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-2 group-hover:translate-y-0">
+                    {/* Architecture Button */}
+                    {project.hasArchitecture && (
                       <button 
-                        onClick={() => setShowArchitecture(true)}
+                        onClick={(e) => { e.stopPropagation(); setShowArchitecture(true); }}
                         title="View Architecture" 
                         className="p-2 bg-zinc-900 hover:bg-emerald-500 hover:text-zinc-950 rounded-full transition-colors text-emerald-400 border border-emerald-500/30 shadow-[0_0_15px_rgba(16,185,129,0.2)]"
                       >
@@ -106,18 +108,18 @@ export function ProjectsSection() {
                       </button>
                     )}
                     {project.github && (
-                      <a href={project.github} target="_blank" rel="noreferrer" title={t.projects.source} className="p-2 bg-zinc-900 hover:bg-emerald-500 hover:text-zinc-950 rounded-full transition-colors text-zinc-400">
+                      <a href={project.github} onClick={(e) => e.stopPropagation()} target="_blank" rel="noreferrer" title={t.projects.source} className="p-2 bg-zinc-900 hover:bg-emerald-500 hover:text-zinc-950 rounded-full transition-colors text-zinc-400">
                         <Github className="w-5 h-5" />
                       </a>
                     )}
                     {project.demo && (
-                      <a href={project.demo} target="_blank" rel="noreferrer" title={t.projects.demo} className="p-2 bg-zinc-900 hover:bg-emerald-500 hover:text-zinc-950 rounded-full transition-colors text-zinc-400">
+                      <a href={project.demo} onClick={(e) => e.stopPropagation()} target="_blank" rel="noreferrer" title={t.projects.demo} className="p-2 bg-zinc-900 hover:bg-emerald-500 hover:text-zinc-950 rounded-full transition-colors text-zinc-400">
                         <ExternalLink className="w-5 h-5" />
                       </a>
                     )}
                     {project.images && project.images.length > 0 && (
                       <button 
-                        onClick={() => setSelectedProject(project)}
+                        onClick={(e) => { e.stopPropagation(); setSelectedProject(project); }}
                         title={t.projects.details} 
                         className="p-2 bg-zinc-900 hover:bg-emerald-500 hover:text-zinc-950 rounded-full transition-colors text-zinc-400"
                       >
@@ -152,6 +154,7 @@ export function ProjectsSection() {
         <ProjectModal 
           project={selectedProject} 
           onClose={() => setSelectedProject(null)} 
+          onShowArchitecture={() => setShowArchitecture(true)}
           t={t}
         />
       )}

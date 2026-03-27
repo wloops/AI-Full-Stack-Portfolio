@@ -1,7 +1,7 @@
 'use client';
 
 import { motion, AnimatePresence } from 'motion/react';
-import { X, ChevronLeft, ChevronRight, Image as ImageIcon, Github, ExternalLink } from 'lucide-react';
+import { X, ChevronLeft, ChevronRight, Image as ImageIcon, Github, ExternalLink, Network } from 'lucide-react';
 import Image from 'next/image';
 import { useState, useEffect } from 'react';
 import { createPortal } from 'react-dom';
@@ -14,12 +14,14 @@ interface ProjectModalProps {
     images?: string[];
     github?: string;
     demo?: string;
+    hasArchitecture?: boolean;
   };
   onClose: () => void;
+  onShowArchitecture?: () => void;
   t: any;
 }
 
-export function ProjectModal({ project, onClose, t }: ProjectModalProps) {
+export function ProjectModal({ project, onClose, onShowArchitecture, t }: ProjectModalProps) {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [mounted, setMounted] = useState(false);
 
@@ -76,14 +78,51 @@ export function ProjectModal({ project, onClose, t }: ProjectModalProps) {
           className="relative w-full max-w-5xl bg-zinc-900 border border-zinc-800 rounded-2xl shadow-2xl overflow-hidden flex flex-col max-h-[90vh]"
         >
           {/* Header */}
-          <div className="flex items-center justify-between p-6 border-b border-zinc-800">
-            <h3 className="text-xl font-bold text-zinc-100">{project.title}</h3>
-            <button
-              onClick={onClose}
-              className="p-2 text-zinc-400 hover:text-zinc-100 hover:bg-zinc-800 rounded-full transition-colors"
-            >
-              <X className="w-5 h-5" />
-            </button>
+          <div className="flex items-center justify-between p-4 sm:p-6 border-b border-zinc-800">
+            <h3 className="text-lg sm:text-xl font-bold text-zinc-100 truncate pr-4">{project.title}</h3>
+            <div className="flex items-center gap-2 sm:gap-3 shrink-0">
+              {project.hasArchitecture && onShowArchitecture && (
+                <button
+                  onClick={() => {
+                    onClose();
+                    onShowArchitecture();
+                  }}
+                  className="p-2 bg-zinc-800/50 hover:bg-emerald-500 hover:text-zinc-950 rounded-full transition-colors text-emerald-400 border border-emerald-500/30"
+                  title="View Architecture"
+                >
+                  <Network className="w-4 h-4 sm:w-5 sm:h-5" />
+                </button>
+              )}
+              {project.github && (
+                <a
+                  href={project.github}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="p-2 bg-zinc-800/50 hover:bg-emerald-500 hover:text-zinc-950 rounded-full transition-colors text-zinc-400"
+                  title="Source Code"
+                >
+                  <Github className="w-4 h-4 sm:w-5 sm:h-5" />
+                </a>
+              )}
+              {project.demo && (
+                <a
+                  href={project.demo}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="p-2 bg-zinc-800/50 hover:bg-emerald-500 hover:text-zinc-950 rounded-full transition-colors text-zinc-400"
+                  title="Live Demo"
+                >
+                  <ExternalLink className="w-4 h-4 sm:w-5 sm:h-5" />
+                </a>
+              )}
+              <div className="w-px h-6 bg-zinc-800 mx-1 hidden sm:block" />
+              <button
+                onClick={onClose}
+                className="p-2 text-zinc-400 hover:text-zinc-100 hover:bg-zinc-800 rounded-full transition-colors"
+              >
+                <X className="w-5 h-5 sm:w-6 sm:h-6" />
+              </button>
+            </div>
           </div>
 
           {/* Body */}

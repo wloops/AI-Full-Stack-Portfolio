@@ -2,7 +2,7 @@ export type Language = 'zh' | 'en';
 
 export const dict = {
   zh: {
-    nav: { skills: '技能', experience: '经历', projects: '项目', chat: 'AI 导览', resume: '简历' },
+    nav: { skills: '技能', experience: '经历', projects: '项目', workflow: 'AI 工作流', chat: 'AI 导览', resume: '简历' },
     hero: {
       badge: 'Hello, World! 我是刘文龙',
       title1: '构建',
@@ -191,7 +191,7 @@ export const dict = {
     footer: '© 2026 刘文龙. Crafted with code & coffee.'
   },
   en: {
-    nav: { skills: 'Skills', experience: 'Experience', projects: 'Projects', chat: 'AI Chat', resume: 'Resume' },
+    nav: { skills: 'Skills', experience: 'Experience', projects: 'Projects', workflow: 'AI Workflow', chat: 'AI Chat', resume: 'Resume' },
     hero: {
       badge: 'Hello, World! I am Wenlong Liu',
       title1: 'Building',
