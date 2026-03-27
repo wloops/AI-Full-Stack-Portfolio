@@ -118,6 +118,57 @@ export const dict = {
         }
       ]
     },
+    workflow: {
+      badge: 'AI 研发体系',
+      title1: 'AI 工程化',
+      title2: '工作流',
+      desc: '在 AI 时代，核心竞争力不再是单纯的编码速度，而是如何利用 AI 构建可靠、可维护的工程体系。以下是我在团队中推行的 AI 协作模式。',
+      items: [
+        {
+          title: '代码质量控制 (Quality)',
+          desc: 'Type-First 驱动开发。在让 AI 生成逻辑前，先由人类定义严格的 TypeScript 接口与领域模型。结合自动化 Lint 和 AI 单元测试生成，确保核心业务逻辑 100% 覆盖，避免 AI 产生幻觉代码。',
+          icon: 'ShieldCheck'
+        },
+        {
+          title: '防止架构腐烂 (Architecture)',
+          desc: '采用上下文隔离（Context Isolation）。不让 AI 看到全局代码，而是按领域驱动设计（DDD）拆分模块，强制 AI 遵循单一职责原则。利用 AI 进行定期的代码坏味道扫描与重构建议。',
+          icon: 'Cpu'
+        },
+        {
+          title: '智能 Code Review (Review)',
+          desc: '建立双重审查机制：AI 负责第一道防线（发现潜在 Bug、规范检查、复杂度与安全扫描），人类负责第二道防线（架构合理性、业务逻辑闭环）。大幅提升 PR 审查效率。',
+          icon: 'GitMerge'
+        },
+        {
+          title: '团队协作与 SOP (Collaboration)',
+          desc: '沉淀团队级 Prompt 资产库。规范化 AI 提交信息（Commit Message），统一代码风格。在 CI/CD 阶段引入 AI 自动总结变更日志，降低跨部门沟通成本。',
+          icon: 'Users'
+        }
+      ],
+      diagram: {
+        title: '全栈 AI 架构工作流',
+        nodes: {
+          prd: '产品需求 / 原始 PRD',
+          rag: '全栈 RAG 防腐层 (企业级知识库)',
+          rag1: '前端规范 Vue3/状态管理',
+          rag2: '后端微服务 API 契约 FastAPI/Java',
+          rag3: '数据库设计规范与现有 Schema',
+          architect: 'Architect Agent 全栈架构分析',
+          specs: 'AI 生成全栈技术规格',
+          specData: '数据层: 数据库表结构设计 DDL/ORM',
+          specService: '服务层: 后端接口契约 OpenAPI/Swagger',
+          specView: '视图层: 前端页面树与组件划分',
+          review: '人工架构评审 (Human Review)',
+          reject: '驳回: 接口违背规范 / 数据库出现冗余表',
+          approve: '通过: 锁定 API 契约与全栈上下文',
+          langgraph: 'LangGraph 并行任务调度',
+          agentDb: 'DB Agent 生成数据库迁移脚本',
+          agentBackend: 'Backend Agent 生成业务逻辑与单元测试',
+          agentFrontend: 'Frontend Agent 生成 UI 并绑定 Mock 数据',
+          reviewer: 'Reviewer Agent 自动化全栈联调与质检'
+        }
+      }
+    },
     footer: '© 2026 刘文龙. Crafted with code & coffee.'
   },
   en: {
@@ -236,6 +287,57 @@ export const dict = {
           description: 'Developed admin panels, mobile H5, and WeChat mini-programs. Encapsulated highly reusable business components; implemented mobile performance optimizations and weak network fallback logic.'
         }
       ]
+    },
+    workflow: {
+      badge: 'AI Engineering',
+      title1: 'AI',
+      title2: 'Workflow',
+      desc: 'In the AI era, the core competency is no longer just coding speed, but how to build a reliable and maintainable engineering system using AI. Here is the AI collaboration model I advocate.',
+      items: [
+        {
+          title: 'Quality Control',
+          desc: 'Type-First driven development. Define strict TypeScript interfaces and domain models before letting AI generate logic. Combined with automated linting and AI unit test generation to ensure 100% coverage of core logic, avoiding AI hallucinations.',
+          icon: 'ShieldCheck'
+        },
+        {
+          title: 'Preventing Architecture Decay',
+          desc: 'Adopt Context Isolation. Prevent AI from seeing global code; instead, split modules based on Domain-Driven Design (DDD) to force AI to follow the Single Responsibility Principle. Use AI for regular code smell scanning and refactoring suggestions.',
+          icon: 'Cpu'
+        },
+        {
+          title: 'Smart Code Review',
+          desc: 'Establish a dual review mechanism: AI handles the first line of defense (finding potential bugs, convention checks, complexity and security scanning), while humans handle the second (architectural soundness, business logic loops). Drastically improves PR review efficiency.',
+          icon: 'GitMerge'
+        },
+        {
+          title: 'Team Collaboration & SOP',
+          desc: 'Build a team-level Prompt asset library. Standardize AI commit messages and unify code styles. Introduce AI to automatically summarize changelogs during CI/CD to reduce cross-departmental communication costs.',
+          icon: 'Users'
+        }
+      ],
+      diagram: {
+        title: 'Full-Stack AI Architecture Workflow',
+        nodes: {
+          prd: 'Product Requirements / PRD',
+          rag: 'Full-Stack RAG Anti-Corruption Layer',
+          rag1: 'Frontend Specs (Vue3/State)',
+          rag2: 'Backend API Contracts (FastAPI/Java)',
+          rag3: 'DB Design Specs & Existing Schema',
+          architect: 'Architect Agent: Full-Stack Analysis',
+          specs: 'AI Generates Full-Stack Specs',
+          specData: 'Data Layer: DDL/ORM Design',
+          specService: 'Service Layer: OpenAPI/Swagger',
+          specView: 'View Layer: Page Tree & Components',
+          review: 'Human Architecture Review',
+          reject: 'Reject: Spec Violation / Redundant Tables',
+          approve: 'Approve: Lock API Contracts & Context',
+          langgraph: 'LangGraph Parallel Task Scheduling',
+          agentDb: 'DB Agent: Migration Scripts',
+          agentBackend: 'Backend Agent: Logic & Unit Tests',
+          agentFrontend: 'Frontend Agent: UI & Mock Data',
+          reviewer: 'Reviewer Agent: Automated Integration & QA'
+        }
+      }
     },
     footer: '© 2026 Wenlong Liu. Crafted with code & coffee.'
   }
