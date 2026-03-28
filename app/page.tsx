@@ -5,7 +5,6 @@ import { HeroSection } from '@/components/hero';
 import { SkillsSection } from '@/components/skills';
 import { ExperienceSection } from '@/components/experience';
 import { ProjectsSection } from '@/components/projects';
-import { AiChatSection } from '@/components/ai-chat';
 import { AiWorkflow } from '@/components/ai-workflow';
 import { useLanguage } from '@/components/language-provider';
 
@@ -28,7 +27,6 @@ export default function Home() {
         <Navbar />
         <HeroSection />
         <ProjectsSection />
-        <AiChatSection />
         <SkillsSection />
         <ExperienceSection />
         <AiWorkflow lang={lang} />

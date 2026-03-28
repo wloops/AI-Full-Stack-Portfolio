@@ -2,7 +2,7 @@
 
 import { motion, useMotionValue, useMotionTemplate } from 'motion/react';
 import { MouseEvent } from 'react';
-import { ArrowRight, Github, Linkedin, Mail, Terminal, Code2 } from 'lucide-react';
+import { ArrowRight, Github, Linkedin, Mail, Terminal, Code2, Workflow } from 'lucide-react';
 import { useLanguage } from '@/components/language-provider';
 import { ScrambleText } from '@/components/scramble-text';
 import { AICodingEffect } from '@/components/ai-coding-effect';
@@ -156,8 +156,8 @@ export function HeroSection() {
             </span>
           </a>
           
-          <a href="#ai-interview" className="px-8 py-4 bg-zinc-900 border border-zinc-800 hover:border-emerald-500/50 text-zinc-100 font-semibold rounded-full transition-all hover:bg-zinc-800 flex items-center gap-2 group">
-            <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+          <a href="#workflow" className="px-8 py-4 bg-zinc-900 border border-zinc-800 hover:border-emerald-500/50 text-zinc-100 font-semibold rounded-full transition-all hover:bg-zinc-800 flex items-center gap-2 group">
+            <Workflow className="w-4 h-4 text-emerald-500" />
             <span>{t.hero.btn2}</span>
             <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform text-emerald-500" />
           </a>

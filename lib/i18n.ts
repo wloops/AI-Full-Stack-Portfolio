@@ -11,7 +11,7 @@ export const dict = {
       desc: '7 年全栈研发经验，具备从前端界面、后端服务到 AI 应用落地的完整交付能力。长期专注工程化架构、低代码平台与复杂中后台系统，也持续将 LLM / RAG 能力整合进真实业务场景。',
       tags: ['AI / RAG', 'Low-Code Platforms', 'Vue & React', 'Node.js & Python', 'Product Engineering'],
       btn1: '查看项目作品',
-      btn2: '与 AI 导览对话',
+      btn2: '探索 AI 工作流',
       socials: {
         github: 'https://github.com',
         linkedin: 'https://linkedin.com',
@@ -200,7 +200,7 @@ export const dict = {
       desc: '7 years of full-stack R&D experience, with complete delivery capabilities from frontend interfaces and backend services to AI application implementation. Long-term focus on engineering architecture, low-code platforms, and complex middle/back-office systems, while continuously integrating LLM/RAG capabilities into real business scenarios.',
       tags: ['AI / RAG', 'Low-Code Platforms', 'Vue & React', 'Node.js & Python', 'Product Engineering'],
       btn1: 'View Project Works',
-      btn2: 'Chat with AI Guide',
+      btn2: 'Explore AI Workflow',
       socials: {
         github: 'https://github.com',
         linkedin: 'https://linkedin.com',
