@@ -13,7 +13,7 @@ export const dict = {
       btn1: '查看项目作品',
       btn2: '探索 AI 工作流',
       socials: {
-        github: 'https://github.com',
+        github: 'https://github.com/wloops',
         linkedin: 'https://linkedin.com',
         email: 'mailto:wloops@foxmail.com'
       }
@@ -24,7 +24,7 @@ export const dict = {
       title2: '项目',
       desc: '深入业务场景，解决实际问题。这里展示了我主导架构和开发的核心项目，涵盖低代码引擎、大屏可视化与 AI 赋能。',
       viewAll: '在 GitHub 上查看全部',
-      viewAllLink: 'https://github.com',
+      viewAllLink: 'https://github.com/wloops',
       demo: '在线演示',
       source: '源码',
       details: '查看详情',
@@ -38,8 +38,8 @@ export const dict = {
             'https://picsum.photos/seed/rag2/1200/800',
             'https://picsum.photos/seed/rag3/1200/800'
           ],
-          github: 'https://github.com',
-          demo: 'https://demo.example.com'
+          github: 'https://github.com/wloops',
+          demo: 'https://rag.restflux.online'
         },
         {
           title: 'HOBY全流程供应链数据服务平台',
@@ -48,8 +48,7 @@ export const dict = {
           images: [
             'https://picsum.photos/seed/hoby1/1200/800',
             'https://picsum.photos/seed/hoby2/1200/800'
-          ],
-          demo: 'https://demo.example.com'
+          ]
         },
         {
           title: '密码安全态势感知平台（数据可视化大屏）',
@@ -202,7 +201,7 @@ export const dict = {
       btn1: 'View Project Works',
       btn2: 'Explore AI Workflow',
       socials: {
-        github: 'https://github.com',
+        github: 'https://github.com/wloops',
         linkedin: 'https://linkedin.com',
         email: 'mailto:wloops@foxmail.com'
       }
@@ -213,7 +212,7 @@ export const dict = {
       title2: 'Projects',
       desc: 'Solving real-world problems. Here are the core projects I\'ve architected and developed, covering low-code engines, data visualization, and AI integration.',
       viewAll: 'View all on GitHub',
-      viewAllLink: 'https://github.com',
+      viewAllLink: 'https://github.com/wloops',
       demo: 'Live Demo',
       source: 'Source',
       details: 'View Details',
@@ -227,8 +226,8 @@ export const dict = {
             'https://picsum.photos/seed/rag2/1200/800',
             'https://picsum.photos/seed/rag3/1200/800'
           ],
-          github: 'https://github.com',
-          demo: 'https://demo.example.com'
+          github: 'https://github.com/wloops',
+          demo: 'https://rag.restflux.online'
         },
         {
           title: 'HOBY Supply Chain Data Service Platform',
@@ -237,8 +236,7 @@ export const dict = {
           images: [
             'https://picsum.photos/seed/hoby1/1200/800',
             'https://picsum.photos/seed/hoby2/1200/800'
-          ],
-          demo: 'https://demo.example.com'
+          ]
         },
         {
           title: 'Cryptographic Security Posture Awareness Platform',

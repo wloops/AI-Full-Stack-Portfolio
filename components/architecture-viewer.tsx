@@ -36,7 +36,8 @@ export function ArchitectureViewer({ isOpen, onClose }: ArchitectureViewerProps)
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    setMounted(true);
+    const timer = setTimeout(() => setMounted(true), 0);
+    return () => clearTimeout(timer);
   }, []);
 
   // Prevent body scroll when modal is open

@@ -5,6 +5,9 @@ import { X, ChevronLeft, ChevronRight, Image as ImageIcon, Github, ExternalLink,
 import Image from 'next/image';
 import { useState, useEffect } from 'react';
 import { createPortal } from 'react-dom';
+import Lightbox from "yet-another-react-lightbox";
+import Zoom from "yet-another-react-lightbox/plugins/zoom";
+import "yet-another-react-lightbox/styles.css";
 
 interface ProjectModalProps {
   project: {
@@ -24,19 +27,27 @@ interface ProjectModalProps {
 export function ProjectModal({ project, onClose, onShowArchitecture, t }: ProjectModalProps) {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [mounted, setMounted] = useState(false);
+  const [showLightbox, setShowLightbox] = useState(false);
 
   useEffect(() => {
-    setMounted(true);
+    const timer = setTimeout(() => setMounted(true), 0);
+    return () => clearTimeout(timer);
   }, []);
 
   // Handle escape key
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') onClose();
+      if (e.key === 'Escape') {
+        if (showLightbox) {
+          setShowLightbox(false);
+        } else {
+          onClose();
+        }
+      }
     };
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [onClose]);
+  }, [onClose, showLightbox]);
 
   // Prevent body scroll when modal is open
   useEffect(() => {
@@ -129,7 +140,10 @@ export function ProjectModal({ project, onClose, onShowArchitecture, t }: Projec
           <div className="flex-1 overflow-y-auto p-6">
             {/* Image Gallery */}
             {project.images && project.images.length > 0 ? (
-              <div className="relative w-full aspect-video bg-zinc-950 rounded-xl overflow-hidden mb-8 group">
+              <div 
+                className="relative w-full h-48 sm:h-64 md:h-80 bg-zinc-950 rounded-xl overflow-hidden mb-8 group cursor-zoom-in"
+                onClick={() => setShowLightbox(true)}
+              >
                 <Image
                   src={project.images[currentImageIndex]}
                   alt={`${project.title} screenshot ${currentImageIndex + 1}`}
@@ -141,13 +155,13 @@ export function ProjectModal({ project, onClose, onShowArchitecture, t }: Projec
                 {project.images.length > 1 && (
                   <>
                     <button
-                      onClick={prevImage}
+                      onClick={(e) => { e.stopPropagation(); prevImage(); }}
                       className="absolute left-4 top-1/2 -translate-y-1/2 p-2 bg-zinc-950/50 hover:bg-emerald-500 text-zinc-300 hover:text-zinc-950 rounded-full backdrop-blur-sm transition-all opacity-100 md:opacity-0 md:group-hover:opacity-100"
                     >
                       <ChevronLeft className="w-6 h-6" />
                     </button>
                     <button
-                      onClick={nextImage}
+                      onClick={(e) => { e.stopPropagation(); nextImage(); }}
                       className="absolute right-4 top-1/2 -translate-y-1/2 p-2 bg-zinc-950/50 hover:bg-emerald-500 text-zinc-300 hover:text-zinc-950 rounded-full backdrop-blur-sm transition-all opacity-100 md:opacity-0 md:group-hover:opacity-100"
                     >
                       <ChevronRight className="w-6 h-6" />
@@ -156,7 +170,7 @@ export function ProjectModal({ project, onClose, onShowArchitecture, t }: Projec
                       {project.images.map((_, idx) => (
                         <button
                           key={idx}
-                          onClick={() => setCurrentImageIndex(idx)}
+                          onClick={(e) => { e.stopPropagation(); setCurrentImageIndex(idx); }}
                           className={`w-2 h-2 rounded-full transition-all ${
                             idx === currentImageIndex ? 'bg-emerald-500 w-4' : 'bg-zinc-500/50 hover:bg-zinc-400'
                           }`}
@@ -212,6 +226,29 @@ export function ProjectModal({ project, onClose, onShowArchitecture, t }: Projec
             </div>
           </div>
         </motion.div>
+
+        {/* Lightbox */}
+        {project.images && (
+          <Lightbox
+            open={showLightbox}
+            close={() => setShowLightbox(false)}
+            index={currentImageIndex}
+            slides={project.images.map(src => ({ src }))}
+            plugins={[Zoom]}
+            animation={{ zoom: 300 }}
+            zoom={{
+              maxZoomPixelRatio: 3,
+              zoomInMultiplier: 2,
+              doubleTapDelay: 300,
+              doubleClickDelay: 300,
+              doubleClickMaxStops: 2,
+              keyboardMoveDistance: 50,
+              wheelZoomDistanceFactor: 100,
+              pinchZoomDistanceFactor: 100,
+              scrollToZoom: false,
+            }}
+          />
+        )}
       </div>
     </AnimatePresence>
   );
