@@ -35,7 +35,7 @@ export function ProjectsSection() {
   const projects = t.projects.list.map((p: any, i: number) => ({
     ...p,
     icon: projectIcons[i % projectIcons.length],
-    cover: p.images?.[0] || projectImages[i % projectImages.length],
+    cover: p.images?.[0] || null,
     colSpan: projectColSpans[i % projectColSpans.length]
   }));
 
@@ -78,13 +78,17 @@ export function ProjectsSection() {
             >
               {/* Background Image with Overlay */}
               <div className="absolute inset-0 z-0 opacity-20 group-hover:opacity-30 transition-opacity duration-500">
-                <Image 
-                  src={project.cover} 
-                  alt={project.title}
-                  fill
-                  className="object-cover"
-                  referrerPolicy="no-referrer"
-                />
+                {project.cover ? (
+                  <Image 
+                    src={project.cover} 
+                    alt={project.title}
+                    fill
+                    className="object-cover"
+                    referrerPolicy="no-referrer"
+                  />
+                ) : (
+                  <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/20 to-teal-900/40" />
+                )}
                 <div className="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-900/80 to-transparent" />
               </div>
               

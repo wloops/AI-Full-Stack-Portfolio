@@ -137,7 +137,7 @@ export function ProjectModal({ project, onClose, t }: ProjectModalProps) {
           {/* Body */}
           <div className="flex-1 overflow-y-auto p-6">
             {/* Image Gallery */}
-            {project.images && project.images.length > 0 ? (
+            {project.images && project.images.length > 0 && (
               <div 
                 className="relative w-full h-48 sm:h-64 md:h-80 bg-zinc-950 rounded-xl overflow-hidden mb-8 group cursor-zoom-in"
                 onClick={() => setShowLightbox(true)}
@@ -177,11 +177,6 @@ export function ProjectModal({ project, onClose, t }: ProjectModalProps) {
                     </div>
                   </>
                 )}
-              </div>
-            ) : (
-              <div className="w-full aspect-video bg-zinc-950 rounded-xl flex flex-col items-center justify-center text-zinc-600 mb-8">
-                <ImageIcon className="w-12 h-12 mb-4 opacity-50" />
-                <p>No images available</p>
               </div>
             )}
 
