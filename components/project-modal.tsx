@@ -9,25 +9,32 @@ import Lightbox from "yet-another-react-lightbox";
 import Zoom from "yet-another-react-lightbox/plugins/zoom";
 import "yet-another-react-lightbox/styles.css";
 
+interface ArchitectureImage {
+  src: string;
+  title?: string;
+  description?: string;
+}
+
 interface ProjectModalProps {
   project: {
     title: string;
     description: string;
     tech: string[];
     images?: string[];
+    architectureImages?: ArchitectureImage[];
     github?: string;
     demo?: string;
-    hasArchitecture?: boolean;
   };
   onClose: () => void;
-  onShowArchitecture?: () => void;
   t: any;
 }
 
-export function ProjectModal({ project, onClose, onShowArchitecture, t }: ProjectModalProps) {
+export function ProjectModal({ project, onClose, t }: ProjectModalProps) {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [mounted, setMounted] = useState(false);
   const [showLightbox, setShowLightbox] = useState(false);
+  const [showArchLightbox, setShowArchLightbox] = useState(false);
+  const [currentArchImageIndex, setCurrentArchImageIndex] = useState(0);
 
   useEffect(() => {
     const timer = setTimeout(() => setMounted(true), 0);
@@ -40,6 +47,8 @@ export function ProjectModal({ project, onClose, onShowArchitecture, t }: Projec
       if (e.key === 'Escape') {
         if (showLightbox) {
           setShowLightbox(false);
+        } else if (showArchLightbox) {
+          setShowArchLightbox(false);
         } else {
           onClose();
         }
@@ -47,7 +56,7 @@ export function ProjectModal({ project, onClose, onShowArchitecture, t }: Projec
     };
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [onClose, showLightbox]);
+  }, [onClose, showLightbox, showArchLightbox]);
 
   // Prevent body scroll when modal is open
   useEffect(() => {
@@ -92,18 +101,6 @@ export function ProjectModal({ project, onClose, onShowArchitecture, t }: Projec
           <div className="flex items-center justify-between p-4 sm:p-6 border-b border-zinc-800">
             <h3 className="text-lg sm:text-xl font-bold text-zinc-100 truncate pr-4">{project.title}</h3>
             <div className="flex items-center gap-2 sm:gap-3 shrink-0">
-              {project.hasArchitecture && onShowArchitecture && (
-                <button
-                  onClick={() => {
-                    onClose();
-                    onShowArchitecture();
-                  }}
-                  className="p-2 bg-zinc-800/50 hover:bg-emerald-500 hover:text-zinc-950 rounded-full transition-colors text-emerald-400 border border-emerald-500/30"
-                  title="View Architecture"
-                >
-                  <Network className="w-4 h-4 sm:w-5 sm:h-5" />
-                </button>
-              )}
               {project.github && (
                 <a
                   href={project.github}
@@ -207,6 +204,43 @@ export function ProjectModal({ project, onClose, onShowArchitecture, t }: Projec
                 </div>
               </div>
 
+              {project.architectureImages && project.architectureImages.length > 0 && (
+                <div>
+                  <h4 className="text-sm font-mono text-emerald-500 mb-3 uppercase tracking-wider flex items-center gap-2">
+                    <Network className="w-4 h-4" />
+                    {t.projects.architecture || 'Architecture & Design'}
+                  </h4>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                    {project.architectureImages.map((img, idx) => (
+                      <div key={idx} className="flex flex-col gap-3">
+                        <div 
+                          onClick={() => {
+                            setCurrentArchImageIndex(idx);
+                            setShowArchLightbox(true);
+                          }}
+                          className="relative aspect-video bg-zinc-950 rounded-xl overflow-hidden cursor-zoom-in group border border-zinc-800 hover:border-emerald-500/50 transition-colors"
+                        >
+                          <Image
+                            src={img.src}
+                            alt={img.title || `${project.title} architecture ${idx + 1}`}
+                            fill
+                            className="object-cover opacity-80 group-hover:opacity-100 transition-opacity group-hover:scale-105 duration-500"
+                            referrerPolicy="no-referrer"
+                          />
+                          <div className="absolute inset-0 bg-zinc-950/20 group-hover:bg-transparent transition-colors" />
+                        </div>
+                        {(img.title || img.description) && (
+                          <div className="px-1">
+                            {img.title && <h5 className="text-zinc-200 font-medium text-sm mb-1">{img.title}</h5>}
+                            {img.description && <p className="text-zinc-400 text-xs leading-relaxed">{img.description}</p>}
+                          </div>
+                        )}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+
               {(project.github || project.demo) && (
                 <div className="pt-4 flex gap-4">
                   {project.github && (
@@ -234,6 +268,29 @@ export function ProjectModal({ project, onClose, onShowArchitecture, t }: Projec
             close={() => setShowLightbox(false)}
             index={currentImageIndex}
             slides={project.images.map(src => ({ src }))}
+            plugins={[Zoom]}
+            animation={{ zoom: 300 }}
+            zoom={{
+              maxZoomPixelRatio: 3,
+              zoomInMultiplier: 2,
+              doubleTapDelay: 300,
+              doubleClickDelay: 300,
+              doubleClickMaxStops: 2,
+              keyboardMoveDistance: 50,
+              wheelZoomDistanceFactor: 100,
+              pinchZoomDistanceFactor: 100,
+              scrollToZoom: false,
+            }}
+          />
+        )}
+
+        {/* Architecture Lightbox */}
+        {project.architectureImages && (
+          <Lightbox
+            open={showArchLightbox}
+            close={() => setShowArchLightbox(false)}
+            index={currentArchImageIndex}
+            slides={project.architectureImages.map(img => ({ src: img.src }))}
             plugins={[Zoom]}
             animation={{ zoom: 300 }}
             zoom={{

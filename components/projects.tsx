@@ -6,7 +6,6 @@ import Image from 'next/image';
 import { useState } from 'react';
 import { useLanguage } from '@/components/language-provider';
 import { ProjectModal } from '@/components/project-modal';
-import { ArchitectureViewer } from '@/components/architecture-viewer';
 
 const projectIcons = [
   <Workflow key="1" className="w-6 h-6 text-emerald-400" />,
@@ -32,14 +31,12 @@ const projectColSpans = [
 export function ProjectsSection() {
   const { t } = useLanguage();
   const [selectedProject, setSelectedProject] = useState<any>(null);
-  const [showArchitecture, setShowArchitecture] = useState(false);
 
   const projects = t.projects.list.map((p: any, i: number) => ({
     ...p,
     icon: projectIcons[i % projectIcons.length],
     cover: p.images?.[0] || projectImages[i % projectImages.length],
-    colSpan: projectColSpans[i % projectColSpans.length],
-    hasArchitecture: i === 0
+    colSpan: projectColSpans[i % projectColSpans.length]
   }));
 
   return (
@@ -98,9 +95,9 @@ export function ProjectsSection() {
                   </div>
                   <div className="hidden lg:flex gap-3 opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-2 group-hover:translate-y-0">
                     {/* Architecture Button */}
-                    {project.hasArchitecture && (
+                    {project.architectureImages && project.architectureImages.length > 0 && (
                       <button 
-                        onClick={(e) => { e.stopPropagation(); setShowArchitecture(true); }}
+                        onClick={(e) => { e.stopPropagation(); setSelectedProject(project); }}
                         title="View Architecture" 
                         className="p-2 bg-zinc-900 hover:bg-emerald-500 hover:text-zinc-950 rounded-full transition-colors text-emerald-400 border border-emerald-500/30 shadow-[0_0_15px_rgba(16,185,129,0.2)]"
                       >
@@ -154,16 +151,9 @@ export function ProjectsSection() {
         <ProjectModal 
           project={selectedProject} 
           onClose={() => setSelectedProject(null)} 
-          onShowArchitecture={() => setShowArchitecture(true)}
           t={t}
         />
       )}
-
-      {/* Architecture Viewer Modal */}
-      <ArchitectureViewer 
-        isOpen={showArchitecture} 
-        onClose={() => setShowArchitecture(false)} 
-      />
     </section>
   );
 }

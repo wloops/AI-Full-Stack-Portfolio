@@ -28,6 +28,7 @@ export const dict = {
       demo: '在线演示',
       source: '源码',
       details: '查看详情',
+      architecture: '架构设计',
       list: [
         {
           title: 'AI 知识库问答平台（RAG + Agent 工作台）',
@@ -37,6 +38,18 @@ export const dict = {
             'https://picsum.photos/seed/rag1/1200/800',
             'https://picsum.photos/seed/rag2/1200/800',
             'https://picsum.photos/seed/rag3/1200/800'
+          ],
+          architectureImages: [
+            {
+              src: 'https://picsum.photos/seed/arch1/1200/800',
+              title: '系统整体架构',
+              description: '展示了前后端分离架构，以及 Node.js BFF 层与底层微服务的交互链路。'
+            },
+            {
+              src: 'https://picsum.photos/seed/arch2/1200/800',
+              title: 'RAG 检索增强生成链路',
+              description: '详细描述了从文档解析、向量化存储到 LLM 问答的完整数据流。'
+            }
           ],
           github: 'https://github.com/wloops',
           demo: 'https://rag.restflux.online'
@@ -216,6 +229,7 @@ export const dict = {
       demo: 'Live Demo',
       source: 'Source',
       details: 'View Details',
+      architecture: 'Architecture & Design',
       list: [
         {
           title: 'AI Knowledge Base & Q&A Platform (RAG + Agent)',
@@ -225,6 +239,18 @@ export const dict = {
             'https://picsum.photos/seed/rag1/1200/800',
             'https://picsum.photos/seed/rag2/1200/800',
             'https://picsum.photos/seed/rag3/1200/800'
+          ],
+          architectureImages: [
+            {
+              src: 'https://picsum.photos/seed/arch1/1200/800',
+              title: 'Overall System Architecture',
+              description: 'Shows the frontend-backend separation architecture and the interaction between the Node.js BFF layer and underlying microservices.'
+            },
+            {
+              src: 'https://picsum.photos/seed/arch2/1200/800',
+              title: 'RAG Pipeline',
+              description: 'Details the complete data flow from document parsing and vector storage to LLM Q&A.'
+            }
           ],
           github: 'https://github.com/wloops',
           demo: 'https://rag.restflux.online'
