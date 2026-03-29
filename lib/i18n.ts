@@ -1,6 +1,104 @@
 export type Language = 'zh' | 'en';
 
-export const dict = {
+export interface ProjectArchitectureImage {
+  src: string;
+  title: string;
+  description: string;
+}
+
+export interface ProjectItem {
+  title: string;
+  description: string;
+  contributions: string[];
+  tech: string[];
+  images: string[];
+  architectureImages?: ProjectArchitectureImage[];
+  github?: string;
+  demo?: string;
+}
+
+export interface TranslationDict {
+  nav: Record<'skills' | 'experience' | 'projects' | 'workflow' | 'chat' | 'resume', string>;
+  hero: {
+    badge: string;
+    title1: string;
+    title2: string;
+    title3: string;
+    desc: string;
+    tags: string[];
+    btn1: string;
+    btn2: string;
+    socials: Record<'github' | 'linkedin' | 'email', string>;
+  };
+  projects: {
+    badge: string;
+    title1: string;
+    title2: string;
+    desc: string;
+    viewAll: string;
+    viewAllLink: string;
+    demo: string;
+    source: string;
+    details: string;
+    architecture: string;
+    contributions: string;
+    list: ProjectItem[];
+  };
+  chat: {
+    badge: string;
+    title1: string;
+    title2: string;
+    title3: string;
+    desc: string;
+    aiName: string;
+    online: string;
+    placeholder: string;
+    error: string;
+    initialMsg: string;
+  };
+  skills: {
+    title1: string;
+    title2: string;
+    desc: string;
+    categories: Array<{
+      name: string;
+      items: string[];
+    }>;
+  };
+  experience: {
+    title1: string;
+    title2: string;
+    list: Array<{
+      role: string;
+      company: string;
+      period: string;
+      description: string;
+    }>;
+  };
+  workflow: {
+    badge: string;
+    title1: string;
+    title2: string;
+    desc: string;
+    items: Array<{
+      title: string;
+      desc: string;
+      icon: string;
+    }>;
+    diagram: {
+      tabs: {
+        arch: string;
+        cicd: string;
+      };
+      title: string;
+      nodes: Record<string, string>;
+      cicd: Record<string, string>;
+    };
+  };
+  footer: string;
+}
+
+export const dict: Record<Language, TranslationDict> = {
   zh: {
     nav: { skills: '技能', experience: '经历', projects: '项目', workflow: 'AI 工作流', chat: 'AI 导览', resume: '简历' },
     hero: {
