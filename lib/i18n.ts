@@ -42,20 +42,40 @@ export const dict = {
           ],
           tech: ['LLM', 'RAG', 'Agent', 'AI 集成'],
           images: [
-            'https://picsum.photos/seed/rag1/1200/800',
-            'https://picsum.photos/seed/rag2/1200/800',
-            'https://picsum.photos/seed/rag3/1200/800'
+            'https://picgo-long.oss-cn-guangzhou.aliyuncs.com/imgs/PixPin_2026-03-30_00-46-58.png',
+            'https://picgo-long.oss-cn-guangzhou.aliyuncs.com/imgs/PixPin_2026-03-30_01-02-13.png',
+            'https://picgo-long.oss-cn-guangzhou.aliyuncs.com/imgs/PixPin_2026-03-30_01-02-51.png'
           ],
           architectureImages: [
             {
-              src: 'https://picsum.photos/seed/arch1/1200/800',
-              title: '系统整体架构',
-              description: '展示了前后端分离架构，以及 Node.js BFF 层与底层微服务的交互链路。'
+              src: 'https://picgo-long.oss-cn-guangzhou.aliyuncs.com/imgs/PixPin_2026-03-29_23-23-24.png',
+              title: '主链路架构图',
+              description: ''
             },
             {
-              src: 'https://picsum.photos/seed/arch2/1200/800',
+              src: 'https://picgo-long.oss-cn-guangzhou.aliyuncs.com/imgs/PixPin_2026-03-30_00-40-14.png',
               title: 'RAG 检索增强生成链路',
               description: '详细描述了从文档解析、向量化存储到 LLM 问答的完整数据流。'
+            },
+            {
+              src: 'https://picgo-long.oss-cn-guangzhou.aliyuncs.com/imgs/PixPin_2026-03-30_00-54-11.png',
+              title: '共享状态 / 数据流图',
+              description: 'state 里放的是“会影响后续决策和可观测性”的信息，比如用户问题、改写问题、召回 chunk、相关度判断结果、最终答案、引用结构、会话 id'
+            },
+            {
+              src: 'https://picgo-long.oss-cn-guangzhou.aliyuncs.com/imgs/PixPin_2026-03-30_01-04-31.png',
+              title: '提示词设计',
+              description: ''
+            },
+            {
+              src: 'https://picgo-long.oss-cn-guangzhou.aliyuncs.com/imgs/PixPin_2026-03-30_00-59-09.png',
+              title: 'AI 代码规范与验收闭环图',
+              description: ''
+            },
+            {
+              src: 'https://picgo-long.oss-cn-guangzhou.aliyuncs.com/imgs/PixPin_2026-03-30_01-09-41.png',
+              title: '多 Agent 演进图',
+              description: ''
             }
           ],
           github: 'https://github.com/wloops',
@@ -72,9 +92,30 @@ export const dict = {
           ],
           tech: ['React', 'Vue 3', 'Node.js', 'DeepSeek API', 'JSON Schema'],
           images: [
-            'https://picsum.photos/seed/hoby1/1200/800',
-            'https://picsum.photos/seed/hoby2/1200/800'
-          ]
+
+          ],
+          architectureImages: [
+            {
+              src: 'https://picgo-long.oss-cn-guangzhou.aliyuncs.com/imgs/PixPin_2026-03-30_00-09-43.png',
+              title: '低代码引擎架构设计',
+              description: '详细描述了低代码引擎的整体架构设计，包括前端配置端与渲染端的交互，以及核心引擎的实现。'
+            },
+            {
+              src: 'https://picgo-long.oss-cn-guangzhou.aliyuncs.com/imgs/PixPin_2026-03-30_00-10-44.png',
+              title: '低代码核心运行流程（简易）',
+              description: '展示了核心引擎的运行流程，从 JSON Schema 配置输入到最终页面渲染的过程。'
+            },
+            {
+              src: 'https://picgo-long.oss-cn-guangzhou.aliyuncs.com/imgs/PixPin_2026-03-30_00-12-28.png',
+              title: '动态禁用规则引擎解析流程图（难点之一）',
+              description: '针对复杂的动态禁用规则引擎，设计了基于树形结构的规则解析流程，支持多层嵌套与逻辑组合，确保在复杂业务场景下的正确性与性能。'
+            },
+            {
+              src: 'https://picgo-long.oss-cn-guangzhou.aliyuncs.com/imgs/20260330001439275.png',
+              title: '动态禁用规则引擎运行时递归评估流程图',
+              description: ''
+            },
+          ],
         },
         {
           title: '密码安全态势感知平台（数据可视化大屏）',
@@ -86,9 +127,18 @@ export const dict = {
           ],
           tech: ['WebSocket', 'ECharts', 'JSON Schema', '性能调优'],
           images: [
-            'https://picsum.photos/seed/screen1/1200/800',
-            'https://picsum.photos/seed/screen2/1200/800'
-          ]
+            'https://picgo-long.oss-cn-guangzhou.aliyuncs.com/imgs/3cd3855875cf68262351dd4100b3da0a.jpg',
+            'https://picgo-long.oss-cn-guangzhou.aliyuncs.com/imgs/24c7df905c15623b755458a934e5f0c8.jpg',
+            'https://picgo-long.oss-cn-guangzhou.aliyuncs.com/imgs/3f22e1eb6876e1a4b81b09904a310b11.jpg',
+            'https://picgo-long.oss-cn-guangzhou.aliyuncs.com/imgs/f61426fdfbdc099c2656785c6bb9d2e8.jpg'
+          ],
+          architectureImages: [
+            {
+              src: 'https://picgo-long.oss-cn-guangzhou.aliyuncs.com/imgs/0d30d8cd779b704101c263b96a1b25dd.jpg',
+              title: '平台监控数据总结',
+              description: ''
+            },
+          ],
         },
         {
           title: '密码服务平台',
@@ -100,8 +150,6 @@ export const dict = {
           ],
           tech: ['Vue 2', 'Webpack', '国密算法', 'GitLab CI/CD'],
           images: [
-            'https://picsum.photos/seed/crypto1/1200/800',
-            'https://picsum.photos/seed/crypto2/1200/800'
           ]
         }
       ]
