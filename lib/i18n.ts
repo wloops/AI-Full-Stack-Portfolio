@@ -29,10 +29,17 @@ export const dict = {
       source: '源码',
       details: '查看详情',
       architecture: '架构设计',
+      contributions: '核心贡献',
       list: [
         {
           title: 'AI 知识库问答平台（RAG + Agent 工作台）',
-          description: '正在研发中的 AI 知识库问答平台。结合 RAG 技术与 Agent 工作台，提供智能化的知识检索与问答服务。',
+          description: '面向企业知识管理场景，搭建 AI 知识库问答平台，支持文档上传解析、文本清洗、切片、向量索引构建、语义检索、引用溯源、会话持久化与前后端一体化展示。',
+          contributions: [
+            '架构设计：基于 Python FastAPI + SQLAlchemy + PostgreSQL 设计核心模块，完成知识库与会话上下文绑定。',
+            'RAG 链路：实现文档上传 → 解析 → 清洗 → 切片 → Embedding → pgvector 检索 → LLM 回答的完整链路。',
+            '幻觉控制与溯源：设计 citations 返回结构附带摘要片段；引入 top1 相似度阈值兜底策略，检索不足时拒答。',
+            '全栈开发：基于 Next.js + TypeScript 设计产品级前端原型，覆盖工作台、知识库、文档管理与 Debug 面板。'
+          ],
           tech: ['LLM', 'RAG', 'Agent', 'AI 集成'],
           images: [
             'https://picsum.photos/seed/rag1/1200/800',
@@ -56,7 +63,13 @@ export const dict = {
         },
         {
           title: 'HOBY全流程供应链数据服务平台',
-          description: '面向政企的大型 B2B 供应链服务平台。从 0 到 1 设计 React 配置端 + Vue 3 渲染端的双引擎低代码体系，将标准 CRUD 页面交付周期从 2 天缩短至 0.5 天。引入 Node.js BFF 层结合 DeepSeek API 实现字段智能匹配与纠错。',
+          description: '面向政企的大型 B2B 供应链服务平台，涵盖多级仓储、BOM 管理、商品矩阵及全链路订单资金流转。',
+          contributions: [
+            '低代码双引擎：从 0 到 1 设计 React 配置端 + Vue 3 渲染端体系，标准 CRUD 页面交付周期从 2 天缩短至 0.5 天。',
+            '核心引擎开发：实现表单/表格/动作引擎，100% Schema 驱动，中后台硬编码量降低约 80%。',
+            'AI 能力集成：设计前端 Web Worker 预解析与 Node.js BFF 流式处理的大文件导入方案，结合 DeepSeek API 实现字段智能匹配与纠错。',
+            '全栈闭环：独立承担 Java 后端动态 Schema 组装接口开发，完成 Docker + Nginx 容器化线上部署。'
+          ],
           tech: ['React', 'Vue 3', 'Node.js', 'DeepSeek API', 'JSON Schema'],
           images: [
             'https://picsum.photos/seed/hoby1/1200/800',
@@ -65,7 +78,12 @@ export const dict = {
         },
         {
           title: '密码安全态势感知平台（数据可视化大屏）',
-          description: '面向政企安全运营的监控中枢。设计拖拽编排 + JSON Schema 驱动的可视化页面配置引擎。通过 WebSocket + ECharts 增量渲染策略解决海量数据推送下的 DOM 节点暴涨与内存泄漏问题。',
+          description: '面向政企安全运营的监控中枢，具备海量高频威胁数据实时展示等高可用要求，提升企业对密码安全的整体认知和防护能力。',
+          contributions: [
+            '低代码大屏引擎：设计拖拽编排 + JSON Schema 驱动的可视化配置引擎，单张大屏交付周期从 2 周缩短至 3 天。',
+            '性能与内存治理：基于 WebSocket 长连接与 ECharts 增量渲染，解决 DOM 节点膨胀与卡顿；首屏加载优化至 1.5s 内，交互延迟控制在 100ms 内。',
+            '自适应架构：引入动态缩放算法，代码零侵入实现 4K/8K 及异形拼接大屏的像素级精准还原。'
+          ],
           tech: ['WebSocket', 'ECharts', 'JSON Schema', '性能调优'],
           images: [
             'https://picsum.photos/seed/screen1/1200/800',
@@ -74,7 +92,12 @@ export const dict = {
         },
         {
           title: '密码服务平台',
-          description: '面向行内业务系统提供统一密码能力与安全接入的核心系统。主导系统从 JSP 平滑迁移向 Vue 2；前端底层集成国密（SM2/SM4）数据加密通道，完成全栈安全闭环。',
+          description: '面向行内业务系统提供统一密码能力与安全接入的核心系统。',
+          contributions: [
+            '架构演进：主导核心系统从 JSP / FreeMarker 向 Vue 2 / Vue 3 的平滑迁移，完成前端工程化体系建设与历史技术债治理。',
+            '全栈安全：参与全栈安全能力建设，落地国密算法（SM2/SM4）前端接入。',
+            '效能提升：基于 Python 开发自动化验证工具，大幅提升前后端联调效率。'
+          ],
           tech: ['Vue 2', 'Webpack', '国密算法', 'GitLab CI/CD'],
           images: [
             'https://picsum.photos/seed/crypto1/1200/800',
@@ -230,10 +253,17 @@ export const dict = {
       source: 'Source',
       details: 'View Details',
       architecture: 'Architecture & Design',
+      contributions: 'Core Contributions',
       list: [
         {
           title: 'AI Knowledge Base & Q&A Platform (RAG + Agent)',
-          description: 'An upcoming AI knowledge base platform. Combining RAG technology with an Agent workspace to provide intelligent knowledge retrieval and Q&A services.',
+          description: 'An AI knowledge base Q&A platform for enterprise knowledge management, supporting document parsing, vector indexing, semantic search, citation tracking, and full-stack integration.',
+          contributions: [
+            'Architecture: Designed core modules using Python FastAPI + SQLAlchemy + PostgreSQL, binding knowledge bases with session contexts.',
+            'RAG Pipeline: Implemented the complete flow from document upload, chunking, Embedding, pgvector retrieval to LLM generation.',
+            'Hallucination Control: Designed citation structures for traceability and introduced a top-1 similarity threshold fallback to reduce hallucinations.',
+            'Full-Stack Dev: Built a production-grade frontend prototype using Next.js + TypeScript, covering workspaces, document management, and debug panels.'
+          ],
           tech: ['LLM', 'RAG', 'Agent', 'AI Integration'],
           images: [
             'https://picsum.photos/seed/rag1/1200/800',
@@ -257,7 +287,13 @@ export const dict = {
         },
         {
           title: 'HOBY Supply Chain Data Service Platform',
-          description: 'Large-scale B2B supply chain platform. Designed a dual-engine low-code system (React config + Vue 3 render) from scratch, reducing CRUD page delivery from 2 days to 0.5 days. Integrated Node.js BFF with DeepSeek API for intelligent field matching.',
+          description: 'A large-scale B2B supply chain platform for government and enterprise, covering multi-level warehousing, BOM management, and order-to-cash workflows.',
+          contributions: [
+            'Dual-Engine Low-Code: Architected a React config + Vue 3 render system from scratch, reducing CRUD page delivery from 2 days to 0.5 days.',
+            'Core Engines: Developed 100% Schema-driven form, table, and action engines, reducing hardcoded logic by ~80%.',
+            'AI Integration: Designed a large Excel import solution using Web Worker and Node.js BFF, integrating DeepSeek API for intelligent field matching and error correction.',
+            'Full-Stack Deployment: Handled Java backend dynamic Schema assembly APIs and completed Docker + Nginx containerized deployment.'
+          ],
           tech: ['React', 'Vue 3', 'Node.js', 'DeepSeek API', 'JSON Schema'],
           images: [
             'https://picsum.photos/seed/hoby1/1200/800',
@@ -266,7 +302,12 @@ export const dict = {
         },
         {
           title: 'Cryptographic Security Posture Awareness Platform',
-          description: 'Monitoring hub for enterprise security operations. Designed a drag-and-drop + JSON Schema driven visual page configuration engine. Solved DOM node explosion and memory leaks under massive data push using WebSocket + ECharts incremental rendering.',
+          description: 'A monitoring hub for enterprise security operations, featuring real-time visualization of massive, high-frequency threat data.',
+          contributions: [
+            'Low-Code Dashboard Engine: Designed a drag-and-drop + JSON Schema-driven configuration engine, reducing dashboard delivery from 2 weeks to 3 days.',
+            'Performance & Memory Tuning: Resolved DOM bloat and memory leaks using WebSocket and ECharts incremental rendering; optimized LCP to <1.5s and FID to <100ms.',
+            'Adaptive Architecture: Introduced dynamic scaling algorithms for zero-intrusion, pixel-perfect rendering on 4K/8K and irregularly spliced screens.'
+          ],
           tech: ['WebSocket', 'ECharts', 'JSON Schema', 'Performance Tuning'],
           images: [
             'https://picsum.photos/seed/screen1/1200/800',
@@ -275,7 +316,12 @@ export const dict = {
         },
         {
           title: 'Cryptographic Service Platform',
-          description: 'Core system providing unified cryptographic capabilities. Led the smooth migration from JSP to Vue 2. Implemented national cryptographic algorithms (SM2/SM4) in the frontend for a full-stack security loop.',
+          description: 'A core system providing unified cryptographic capabilities and secure access for internal business systems.',
+          contributions: [
+            'Architecture Evolution: Led the smooth migration of core systems from JSP/FreeMarker to Vue 2/Vue 3, establishing frontend engineering standards.',
+            'Full-Stack Security: Implemented national cryptographic algorithms (SM2/SM4) on the frontend for end-to-end security.',
+            'Efficiency Tools: Developed automated validation tools using Python, significantly improving frontend-backend integration efficiency.'
+          ],
           tech: ['Vue 2', 'Webpack', 'Cryptography', 'GitLab CI/CD'],
           images: [
             'https://picsum.photos/seed/crypto1/1200/800',

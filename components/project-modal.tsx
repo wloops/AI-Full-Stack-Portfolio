@@ -19,6 +19,7 @@ interface ProjectModalProps {
   project: {
     title: string;
     description: string;
+    contributions?: string[];
     tech: string[];
     images?: string[];
     architectureImages?: ArchitectureImage[];
@@ -188,10 +189,23 @@ export function ProjectModal({ project, onClose, t }: ProjectModalProps) {
             <div className="space-y-6">
               <div>
                 <h4 className="text-sm font-mono text-emerald-500 mb-2 uppercase tracking-wider">Description</h4>
-                <p className="text-zinc-300 leading-relaxed">
+                <p className="text-zinc-300 leading-relaxed whitespace-pre-wrap">
                   {project.description}
                 </p>
               </div>
+
+              {project.contributions && project.contributions.length > 0 && (
+                <div>
+                  <h4 className="text-sm font-mono text-emerald-500 mb-2 uppercase tracking-wider">{t.projects.contributions || 'Core Contributions'}</h4>
+                  <ul className="space-y-2 text-zinc-300 leading-relaxed list-disc list-inside">
+                    {project.contributions.map((contribution: string, index: number) => (
+                      <li key={index} className="pl-2">
+                        <span className="-ml-2">{contribution}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
               
               <div>
                 <h4 className="text-sm font-mono text-emerald-500 mb-3 uppercase tracking-wider">Tech Stack</h4>
